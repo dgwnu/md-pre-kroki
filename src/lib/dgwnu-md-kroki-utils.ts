@@ -27,6 +27,7 @@ export function listMdFiles(mdFilePath: string) {
 /**
  * Encode Diagram to make Roki Api request pay-load
  * @param diagramSource 
+ * @see <https://docs.kroki.io/kroki/setup/encode-diagram/#nodejs>
  */
 export function encodeDiagram(diagramSource: string) {
     const data = Buffer.from(diagramSource, 'utf8');
