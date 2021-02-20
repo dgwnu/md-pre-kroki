@@ -5,7 +5,7 @@
 /**
  * Node Package Imports
  */
-import { readdirSync, existsSync, unlinkSync } from 'fs';
+import { readdirSync, readFileSync } from 'fs';
 import { deflate } from 'pako';
 
 /**
@@ -35,4 +35,24 @@ export function encodeDiagram(diagramSource: string) {
     return Buffer.from(compressed)
         .toString('base64') 
         .replace(/\+/g, '-').replace(/\//g, '_');
-} 
+}
+
+
+export function preProcessMdFile(inputMdFilePath: string) {
+    const inputMd = readFileSync(inputMdFilePath, 'utf-8').split('\n');
+
+    let lastIndex = 0
+    let hasKrokiLines = true;
+
+    while (hasKrokiLines) {
+        const index = inputMd.indexOf('````plantuml', lastIndex);
+
+        hasKrokiLines = index > -1;
+
+        if (hasKrokiLines) {
+            
+        }
+
+    }
+
+}
