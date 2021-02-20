@@ -20,5 +20,5 @@ npx mdprekroki <input dir> <output dir>
 
 | Parm | Description |
 |---------|:------------|
-| input dir | Directory with .md files to pre-process |
+| input dir | Directory with .kroki.md files to pre-process |
 | output dir | Directory with processes output .md files |
