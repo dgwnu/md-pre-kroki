@@ -36,5 +36,5 @@ for (const inputMdFile of inputMdFiles) {
     console.log(basicMdStr);
     const outputMdFile = join(outputDir, inputMdFile.split('.kroki.md')[0] + '.md');
     console.log(outputMdFile)
-    //writeFileSync(outputMdFile, basicMdStr);
+    writeFileSync(outputMdFile, basicMdStr);
 }
