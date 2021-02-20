@@ -2,7 +2,6 @@
   "name": "@dgwnu/md-pre-kroki-dev",
   "version": "0.0.1",
   "description": "Mark Down Pre-Processor for Kroki-Api code based on GitLab Mark Down processing (development)",
-  "cli": "ts-node -P ts-node-config.json bin/md-pre-kroki-cli.ts",
   "scripts": {
     "build": "npm run build:lib && npm run build:cli",
     "build:cli": "tsc -p ts-cli-config.json",
