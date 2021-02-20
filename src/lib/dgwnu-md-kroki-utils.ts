@@ -75,8 +75,8 @@ export function preProcessKrokiMdFile(inputMdFilePath: string) {
 
             if (krokiDiagramLines.length > 0) {
                 const mdImageLine = '![kroki api]' + 
-                    '(' + KROKI_API_URL + krokiApiPlugin + '/svg/' + encodeKrokiDiagram(krokiDiagramLines.join('\n')) + '"kroki.io")'
-                    ;
+                    '(' + KROKI_API_URL + krokiApiPlugin + '/svg/' + 
+                    encodeKrokiDiagram(krokiDiagramLines.join('\n')) + '"kroki.io")';
                 console.log(`--> mdImageLine = ${mdImageLine}`);
                 outputMdLines.push(mdImageLine);
             }
