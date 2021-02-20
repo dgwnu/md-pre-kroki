@@ -39,20 +39,10 @@ export function encodeDiagram(diagramSource: string) {
 
 
 export function preProcessMdFile(inputMdFilePath: string) {
-    const inputMd = readFileSync(inputMdFilePath, 'utf-8').split('\n');
+    const inputMdLines = readFileSync(inputMdFilePath, 'utf-8').split('\n');
 
-    let lastIndex = 0
-    let hasKrokiLines = true;
-
-    while (hasKrokiLines) {
-        const index = inputMd.indexOf('````plantuml', lastIndex);
-
-        hasKrokiLines = index > -1;
-
-        if (hasKrokiLines) {
-            
-        }
-
+    for (const inputMdLine of inputMdLines) {
+        console.log(`MdLine: ${inputMdLine}`);
     }
 
 }
