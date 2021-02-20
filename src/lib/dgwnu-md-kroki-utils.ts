@@ -39,7 +39,7 @@ export function listMdFiles(mdFilePath: string) {
  * @param diagramSource 
  * @see <https://docs.kroki.io/kroki/setup/encode-diagram/#nodejs>
  */
-export function encodeDiagram(diagramSource: string) {
+export function encodeKrokiDiagram(diagramSource: string) {
     const data = Buffer.from(diagramSource, 'utf8');
     const compressed = deflate(data, { level: 9 });
     return Buffer.from(compressed)
@@ -61,13 +61,21 @@ export function preProcessKrokiMdFile(inputMdFilePath: string) {
     while (lineIndex < inputMdLines.length) {
         console.log(`MdLine: ${inputMdLines[lineIndex]}`);
 
-        if (isKrokiInlne(inputMdLines[lineIndex])) {
+        if (isKrokiMdInline(inputMdLines[lineIndex])) {
             console.log('--> isKrokiInlne');
+            let krokiDiagramLines: string[] = [];
             lineIndex ++;
 
-            while (!inputMdLines[lineIndex].startsWith(MD_INLINE)) {
-
+            while (!isMdInline(inputMdLines[lineIndex])) {
+                krokiDiagramLines.push(inputMdLines[lineIndex]);
+                lineIndex ++;
             }
+
+            if (krokiDiagramLines.length > 0) {
+                const encodedDiagram = encodeKrokiDiagram(krokiDiagramLines.join('\n'));
+                console.log(`encodedDiagram = ${encodedDiagram}`);
+            }
+
 
         } else {
             console.log('--> basicMdInlne')
@@ -80,6 +88,10 @@ export function preProcessKrokiMdFile(inputMdFilePath: string) {
     return outputMdLines.join('\n');
 }
 
-function isKrokiInlne(mdLine: string) {
-    return KROKI_APIS.find(krokiApi => mdLine.startsWith(MD_INLINE + krokiApi));
+function isKrokiMdInline(mdLine: string) {
+    return KROKI_APIS.find(krokiApi => mdLine.trim() == (MD_INLINE + krokiApi));
+}
+
+function isMdInline(mdLine: string) {
+    return mdLine.trim() == MD_INLINE;
 }
