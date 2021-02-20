@@ -7,7 +7,7 @@
     "build": "npm run build:lib && npm run build:cli",
     "build:cli": "tsc -p ts-cli-config.json",
     "build:lib": "rollup -c",
-    "test": "cli test-input test-output"
+    "test": "$npm_package_cli test-input test-output"
   },
   "repository": {
     "type": "git",
