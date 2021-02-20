@@ -17,6 +17,7 @@ const KROKI_APIS = [
     'bpmn'
 ];
 const MD_INLINE = '````';
+const KROKI_API_URL = 'https://kroki.io/';
 
 /**
  * List all files that ends with .md 
@@ -63,6 +64,7 @@ export function preProcessKrokiMdFile(inputMdFilePath: string) {
 
         if (isKrokiMdInline(inputMdLines[lineIndex])) {
             console.log('--> isKrokiInlne');
+            const krokiApiPlugin = inputMdLines[lineIndex].split(MD_INLINE)[1].trim();
             let krokiDiagramLines: string[] = [];
             lineIndex ++;
 
@@ -72,8 +74,11 @@ export function preProcessKrokiMdFile(inputMdFilePath: string) {
             }
 
             if (krokiDiagramLines.length > 0) {
-                const encodedDiagram = encodeKrokiDiagram(krokiDiagramLines.join('\n'));
-                console.log(`encodedDiagram = ${encodedDiagram}`);
+                const mdImageLine = '![kroki api]' + 
+                    '(' + KROKI_API_URL + krokiApiPlugin + '/svg/' + encodeKrokiDiagram(krokiDiagramLines.join('\n')) + '"kroki.io")'
+                    ;
+                console.log(`--> mdImageLine = ${mdImageLine}`);
+                outputMdLines.push(mdImageLine);
             }
 
 

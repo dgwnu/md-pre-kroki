@@ -8,14 +8,14 @@
  * Node Package Modules
  */
 import { argv } from 'process';
-import { resolve } from 'path';
+import { resolve, join } from 'path';
+import { writeFileSync } from 'fs';
 
 /**
  * CLI Library Modules
  */
-import { 
-    listMdFiles
-} from '../lib/dgwnu-md-kroki-utils';
+import { listMdFiles, preProcessKrokiMdFile } from '../lib/dgwnu-md-kroki-utils';
+import { writeFileSync } from 'fs';
 
 
 //
@@ -34,6 +34,8 @@ const inputMdFiles = listMdFiles(inputDir);
 
 for (const inputMdFile of inputMdFiles) {
     console.log(inputMdFile);
+    const basicMdStr = preProcessKrokiMdFile(inputMdFile);
+    const outputMdFile = join(outputDir, inputMdFile.split('.kroki.md')[0] + '.md');
+    console.log(outputMdFile)
+    writeFileSync(outputMdFile, basicMdStr);
 }
-
-console.log(outputDir)
