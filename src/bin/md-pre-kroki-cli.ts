@@ -15,8 +15,6 @@ import { writeFileSync } from 'fs';
  * CLI Library Modules
  */
 import { listMdFiles, preProcessKrokiMdFile } from '../lib/dgwnu-md-kroki-utils';
-import { writeFileSync } from 'fs';
-
 
 //
 // START CLI Script
