@@ -16,7 +16,7 @@ export function listMdFiles(mdFilePath: string) {
     let mdFiles: string[] = [];
 
     readdirSync(mdFilePath).forEach(file => {
-        if (file.endsWith('.md')) {
+        if (file.endsWith('.kroki.md')) {
             mdFiles.push(file);
         }
     });
