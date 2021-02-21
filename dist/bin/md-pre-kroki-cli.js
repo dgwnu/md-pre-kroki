@@ -20,8 +20,8 @@ const lib_1 = require("../lib");
 if (process_1.argv.length != 4) {
     console.error('2 parms required (inputDir outputDir)');
 }
-const inputDir = path_1.resolve('..', process_1.argv[2]);
-const outputDir = path_1.resolve('..', process_1.argv[3]);
+const inputDir = path_1.resolve(process_1.argv[2]);
+const outputDir = path_1.resolve(process_1.argv[3]);
 console.log(inputDir);
 const inputMdFiles = lib_1.listMdFiles(inputDir);
 for (const inputMdFile of inputMdFiles) {
