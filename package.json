@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dgwnu/fuseki-cli.git"
+    "url": "git+https://github.com/dgwnu/md-pre-kroki.git"
   },
   "keywords": [
     "fuseki",
@@ -19,15 +19,10 @@
   "author": "Onno Haldar <onno@haldar.nl>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dgwnu/fuseki-cli/issues"
+    "url": "https://github.com/dgwnu/md-pre-kroki/issues"
   },
-  "homepage": "https://github.com/dgwnu/fuseki-cli#readme",
+  "homepage": "https://github.com/dgwnu/md-pre-kroki#readme",
   "dependencies": {
-    "axios": "^0.21.1",
-    "form-data": "^3.0.0",
-    "rxjs": "^6.6.3"
-  },
-  "peerDependencies": {
-    "@dgwnu/fuseki-service": "git+https://github.com/dgwnu/fuseki-service.git"
+    "pako": "^2.0.3"
   }
 }
