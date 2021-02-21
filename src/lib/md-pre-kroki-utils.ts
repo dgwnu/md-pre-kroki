@@ -1,5 +1,5 @@
 /**
- * DGWNU Utils to use Fuseki Services
+ * DGWNU Utils to Pre-Process Mark Down with Kroki Diagram Apis
  */
 
 /**
@@ -8,16 +8,10 @@
 import { readdirSync, readFileSync } from 'fs';
 import { deflate } from 'pako';
 
-
 /**
- * Kroki Inline Api Constants
+ * Local Package Imports
  */
-const KROKI_APIS = [
-    'plantuml',
-    'bpmn'
-];
-const MD_INLINE = '```';
-const KROKI_API_URL = 'https://kroki.io/';
+import { mdPreKrokiConfig as config } from './md-pre-kroki-config';
 
 /**
  * List all files that ends with .md 
@@ -64,7 +58,7 @@ export function preProcessKrokiMdFile(inputMdFilePath: string) {
 
         if (isKrokiMdInline(inputMdLines[lineIndex])) {
             console.log('--> isKrokiInlne');
-            const krokiApiPlugin = inputMdLines[lineIndex].split(MD_INLINE)[1].trim();
+            const krokiApiPlugin = inputMdLines[lineIndex].split(config.mdInlne)[1].trim();
             let krokiDiagramLines: string[] = [];
             lineIndex ++;
 
@@ -75,7 +69,7 @@ export function preProcessKrokiMdFile(inputMdFilePath: string) {
 
             if (krokiDiagramLines.length > 0) {
                 const mdImageLine = '![kroki api]' + 
-                    '(' + KROKI_API_URL + krokiApiPlugin + '/svg/' + 
+                    '(' + config.apiUrl + krokiApiPlugin + '/svg/' + 
                     encodeKrokiDiagram(krokiDiagramLines.join('\n')) + ' "kroki.io")';
                 console.log(`--> mdImageLine = ${mdImageLine}`);
                 outputMdLines.push(mdImageLine);
@@ -93,10 +87,20 @@ export function preProcessKrokiMdFile(inputMdFilePath: string) {
     return outputMdLines.join('\n');
 }
 
+/**
+ * Check for Mark Down Inline starting Kroki Api Plugin Data
+ * @param mdLine Mark Down Line string to check
+ * @returns true: a Kroki Api Plugin Data Mark Down, false: is not...
+ */
 function isKrokiMdInline(mdLine: string) {
-    return KROKI_APIS.find(krokiApi => mdLine.trim() == (MD_INLINE + krokiApi));
+    return config.apiPlugins.find(krokiApi => mdLine.trim() == (config.mdInlne + krokiApi));
 }
 
+/**
+ * Check for Mark Down Inline
+ * @param mdLine Mark Down Line to check
+ * @returns true: a Mark Down Inline, false: is not...
+ */
 function isMdInline(mdLine: string) {
-    return mdLine.trim() == MD_INLINE;
+    return mdLine.trim() == config.mdInlne;
 }

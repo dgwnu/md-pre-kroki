@@ -1,1 +1,1 @@
-export * from './dgwnu-md-kroki-utils';
+export * from './md-pre-kroki-utils';
