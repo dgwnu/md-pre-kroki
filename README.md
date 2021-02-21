@@ -39,16 +39,12 @@ Note[^1]
 
 Kroki Api PlantUML Mark Down:
 
-<textarea>
-  At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
-</textarea>
-
 <p>
 <code>
-```plantuml</br></br>
->Bob -> Alice : hello</br>
->Alice -> Bob : hi</br>
-```</br>
+```plantuml  
+>Bob -> Alice : hello  
+>Alice -> Bob : hi  
+```  
 </code>
 </p>
 
