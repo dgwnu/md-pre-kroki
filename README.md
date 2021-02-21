@@ -1,14 +1,14 @@
 # MD Pre Kroki! [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 <p>
-Mark Down Pre-Processor for Kroki-Api code based on GitLab Mark Down processing
+Mark Down Pre-Processor for 
 <a href="https://jena.apache.org/download/index.cgi">
     <img 
         src="https://kroki.io/assets/logo.svg" 
         width="4%"
     />
 </a>
-The binary distribution of Fuseki v3.17.0 is used to provide the service.  
+ Api Inline Coding based on GitLab (Kroki Enabled) Mark Down.  
 </p>
 
 ## NPM installation
