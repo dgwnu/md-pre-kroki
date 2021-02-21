@@ -39,9 +39,9 @@ Note[^1]
 
 Kroki Api PlantUML Mark Down
 <p>
-```plantuml  
-Bob -> Alice : hello  
-Alice -> Bob : hi  
+```plantuml</br>
+Bob -> Alice : hello</br>
+Alice -> Bob : hi</br>
 ```  
 </p>
 
