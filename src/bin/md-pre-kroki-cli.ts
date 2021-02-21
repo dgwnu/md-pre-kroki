@@ -24,9 +24,8 @@ if (argv.length != 4) {
     console.error('2 parms required (inputDir outputDir)');
 }
 
-console.log('__dirname', __dirname);
-const inputDir = resolve(__dirname, '..', '..', argv[2]);
-const outputDir = resolve(__dirname, '..', '..', argv[3]);
+const inputDir = resolve('..', argv[2]);
+const outputDir = resolve('..', argv[3]);
 
 console.log(inputDir);
 const inputMdFiles = listMdFiles(inputDir);
