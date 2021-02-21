@@ -1,8 +1,7 @@
 # MD Pre Kroki! [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Mark Down Pre-Processor for Kroki-Api code based on GitLab Mark Down processing
-
 <p>
+Mark Down Pre-Processor for Kroki-Api code based on GitLab Mark Down processing
 <a href="https://jena.apache.org/download/index.cgi">
     <img 
         src="https://kroki.io/assets/logo.svg" 
