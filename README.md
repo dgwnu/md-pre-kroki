@@ -37,17 +37,13 @@ Note[^1]
 
 ## Example
 
-Kroki Api PlantUML Mark Down:
-
+Kroki Api PlantUML Mark Down
 <p>
-<code>
 ```plantuml  
->Bob -> Alice : hello  
->Alice -> Bob : hi  
+Bob -> Alice : hello  
+Alice -> Bob : hi  
 ```  
-</code>
 </p>
-
 
 Kroki Api Mark Down Image:
 
