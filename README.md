@@ -2,6 +2,16 @@
 
 Mark Down Pre-Processor for Kroki-Api code based on GitLab Mark Down processing
 
+<p>
+<a href="https://jena.apache.org/download/index.cgi">
+    <img 
+        src="https://jena.apache.org/images/jena-logo/jena-logo-jumbotron.png" 
+        width="4%"
+    />
+</a>
+The binary distribution of Fuseki v3.17.0 is used to provide the service.  
+</p>
+
 ## NPM installation
 
 ````
