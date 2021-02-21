@@ -2,7 +2,7 @@
 
 <p>
 Mark Down Pre-Processor for 
-<a href="https://jena.apache.org/download/index.cgi">
+<a href="https://kroki.io/">
     <img 
         src="https://kroki.io/assets/logo.svg" 
         width="4%"
