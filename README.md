@@ -5,7 +5,7 @@ Mark Down Pre-Processor for Kroki-Api code based on GitLab Mark Down processing
 <p>
 <a href="https://jena.apache.org/download/index.cgi">
     <img 
-        src="https://jena.apache.org/images/jena-logo/jena-logo-jumbotron.png" 
+        src="https://kroki.io/assets/logo.svg" 
         width="4%"
     />
 </a>
