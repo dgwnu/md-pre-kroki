@@ -37,7 +37,7 @@ Note[^1]
 
 ## Example
 
-Kroki Api PlantUML Mark Down
+___Kroki Api PlantUML Mark Down___
 <p>
     <i>
 ```plantuml</br>
@@ -47,6 +47,6 @@ Alice -> Bob : hi</br>
     </i>
 </p>
 
-Kroki Api Mark Down Image:
+___Kroki Api Mark Down Image___
 
 ![kroki api](https://kroki.io/plantuml/svg/eNpzyk9S0LVTcMzJTE5VsFLISM3JyeeC8IDCTkBZoGAmANl1Cxw= "kroki.io")
