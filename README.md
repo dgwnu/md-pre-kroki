@@ -43,13 +43,15 @@ Kroki Api PlantUML Mark Down:
   At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
 </textarea>
 
-
+<p>
 <code>
 ```plantuml</br>
 >Bob -> Alice : hello</br>
 >Alice -> Bob : hi</br>
 ```</br>
 </code>
+</p>
+
 Kroki Api Mark Down Image:
 
 ![kroki api](https://kroki.io/plantuml/svg/eNpzyk9S0LVTcMzJTE5VsFLISM3JyeeC8IDCTkBZoGAmANl1Cxw= "kroki.io")
