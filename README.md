@@ -8,8 +8,10 @@ Mark Down Pre-Processor for
         width="4%"
     />
 </a>
- Api Inline Coding based on GitLab (Kroki Enabled) Mark Down.  
+ Api Inline Coding based on GitLab Kroki Diagrams.  
 </p>
+
+[See Gitlab Kroki Diagrams integration](https://docs.gitlab.com/ee/administration/integration/kroki.html)
 
 ## NPM installation
 
