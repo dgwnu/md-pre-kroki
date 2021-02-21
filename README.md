@@ -45,7 +45,7 @@ Kroki Api PlantUML Mark Down:
 
 <p>
 <code>
-```plantuml</br>
+```plantuml</br></br>
 >Bob -> Alice : hello</br>
 >Alice -> Bob : hi</br>
 ```</br>
