@@ -34,7 +34,9 @@ npx mdprekroki <input dir> <output dir>
 | input dir | Directory with .kroki.md files to pre-process |
 | output dir | Directory with processes output .md files |
   
-Note [^1] food  
+Note [^1] food.
+
+[^1]: More commande to come in next releases ....
 
 ## Example
 
@@ -51,5 +53,3 @@ Alice -> Bob : hi</br>
 ___Kroki Api Mark Down Image___
 
 ![kroki api](https://kroki.io/plantuml/svg/eNpzyk9S0LVTcMzJTE5VsFLISM3JyeeC8IDCTkBZoGAmANl1Cxw= "kroki.io")
-  
-[^1]: More commande to come in next releases ....
