@@ -49,7 +49,7 @@ var mdPreKrokiConfig = /** @class */ (function () {
 function listMdFiles(mdFilePath) {
     var mdFiles = [];
     readdirSync(mdFilePath).forEach(function (file) {
-        if (file.endsWith('.kroki.md')) {
+        if (file.endsWith('.md')) {
             mdFiles.push(file);
         }
     });

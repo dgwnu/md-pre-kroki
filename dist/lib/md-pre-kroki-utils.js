@@ -20,7 +20,7 @@ const md_pre_kroki_config_1 = require("./md-pre-kroki-config");
 function listMdFiles(mdFilePath) {
     let mdFiles = [];
     fs_1.readdirSync(mdFilePath).forEach(file => {
-        if (file.endsWith('.kroki.md')) {
+        if (file.endsWith('.md')) {
             mdFiles.push(file);
         }
     });
