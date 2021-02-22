@@ -33,6 +33,7 @@ npx mdprekroki <input dir> <output dir>
 |---------|:------------|
 | input dir | Directory with .kroki.md files to pre-process |
 | output dir | Directory with processes output .md files |
+  
 Note[^1]  
 
 ## Example
