@@ -37,14 +37,10 @@ npx mdprekroki <input dir> <output dir>
 ## Example
 
 ___Kroki Api PlantUML Mark Down___
-<p>
-    <i>
-```plantuml</br>
+<p><i>```plantuml</br>
 Bob -> Alice : hello</br>
 Alice -> Bob : hi</br>
-```
-    </i>
-</p>
+```</i></p>
 
 ___Kroki Api Mark Down Image___
 
