@@ -21,6 +21,7 @@ export function listMdFiles(mdFilePath: string) {
     let mdFiles: string[] = [];
 
     readdirSync(mdFilePath).forEach(file => {
+        console.log(`file => ${file}`);
         if (file.endsWith('.md')) {
             mdFiles.push(file);
         }
