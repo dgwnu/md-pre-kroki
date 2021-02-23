@@ -28,19 +28,18 @@ const inputDir = resolve(argv[2]);
 const outputDir = resolve(argv[3]);
 
 console.log(inputDir);
-const mdFiles = listMdFiles(inputDir);
+const mdInputeFiles = listMdFiles(inputDir);
 
-for (const mdFile of mdFiles) {
-    const inputMdFile = join(inputDir, mdFile);
-    console.log('='.repeat(40));
-    console.log(`Pre-Processing: ${inputMdFile}`);
-    const basicMdStr = preProcessKrokiMdFile(inputMdFile);
-    console.log('Processed Kroki Api Inline Mark Down:');
-    console.log('-'.repeat(40));
-    console.log(`${basicMdStr}`);
-    console.log('-'.repeat(40));
-    const outputMdFile = join(outputDir, mdFile);
-    console.log(`Writing To File: ${outputMdFile}`)
-    writeFileSync(outputMdFile, basicMdStr);
-    console.log('='.repeat(40));
+for (const mdInputFile of mdInputeFiles) {
+    //console.log('='.repeat(40));
+    console.log(`Pre-Processing: ${mdInputFile}`);
+    //const preProcessedMdStr = preProcessKrokiMdFile(mdInputFile);
+    //console.log('Processed Kroki Api Inline Mark Down:');
+    //console.log('-'.repeat(40));
+    //console.log(`${preProcessedMdStr}`);
+    //console.log('-'.repeat(40));
+    //const mdOutputMdFile = join(outputDir, mdInputFile);
+    //console.log(`Writing To File: ${mdOutputMdFile}`)
+    //writeFileSync(mdOutputMdFile, preProcessedMdStr);
+    //console.log('='.repeat(40));
 }

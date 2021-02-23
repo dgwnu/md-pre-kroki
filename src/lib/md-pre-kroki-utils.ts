@@ -23,10 +23,16 @@ export function listMdFiles(mdFilePath: string) {
 
     readdirSync(mdFilePath).forEach(file => {
         const inputFilePath = join(mdFilePath, file);
+        console.log(`inputFilePath = ${inputFilePath}`);
 
         if (statSync(inputFilePath).isDirectory()) {
             // a directory recurse to underlying directorie(s) and file(s)
-            mdFiles.concat(listMdFiles(inputFilePath));
+            const mdDirFilePaths = listMdFiles(inputFilePath);
+            
+            for (const mdDirFilePath of mdDirFilePaths) {
+                mdFiles.push(mdDirFilePath);
+            }
+
         } else if (file.endsWith('.md')) {
             // add Mark Down File to Pre-Process
             mdFiles.push(inputFilePath);
