@@ -18,7 +18,7 @@ import { mdPreKrokiConfig as config } from './md-pre-kroki-config';
  * List all files that ends with .md 
  * @param mdFilePath path naar de .md files
  */
-export function listMdFiles(mdFilePath: string) {
+export function listMdFilePaths(mdFilePath: string) {
     let mdFiles: string[] = [];
 
     readdirSync(mdFilePath).forEach(file => {
@@ -26,7 +26,7 @@ export function listMdFiles(mdFilePath: string) {
 
         if (statSync(inputFilePath).isDirectory()) {
             // a directory recurse to underlying directorie(s) and file(s)
-            const mdDirFilePaths = listMdFiles(inputFilePath);
+            const mdDirFilePaths = listMdFilePaths(inputFilePath);
             
             for (const mdDirFilePath of mdDirFilePaths) {
                 mdFiles.push(mdDirFilePath);
