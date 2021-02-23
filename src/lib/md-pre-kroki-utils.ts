@@ -23,7 +23,6 @@ export function listMdFiles(mdFilePath: string) {
 
     readdirSync(mdFilePath).forEach(file => {
         const inputFilePath = join(mdFilePath, file);
-        console.log(`inputFilePath = ${inputFilePath}`);
 
         if (statSync(inputFilePath).isDirectory()) {
             // a directory recurse to underlying directorie(s) and file(s)
