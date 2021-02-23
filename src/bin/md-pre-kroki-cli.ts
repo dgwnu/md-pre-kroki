@@ -38,8 +38,8 @@ for (const mdInputeFilePath of mdInputeFilePaths) {
     console.log('-'.repeat(40));
     console.log(`${preProcessedMdStr}`);
     console.log('-'.repeat(40));
-    //const mdOutputMdFile = join(outputDir, mdInputFile);
-    //console.log(`Writing To File: ${mdOutputMdFile}`)
-    //writeFileSync(mdOutputMdFile, preProcessedMdStr);
-    //console.log('='.repeat(40));
+    const mdOutputMdFilePath = join(outputDir, mdInputeFilePath.split(inputDir)[1]);
+    console.log(`Writing To File: ${mdOutputMdFilePath}`)
+    writeFileSync(mdOutputMdFilePath, preProcessedMdStr);
+    console.log('='.repeat(40));
 }
