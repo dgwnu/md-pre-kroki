@@ -5,7 +5,8 @@
 /**
  * Node Package Imports
  */
-import { readdirSync, readFileSync } from 'fs';
+import { readdirSync, readFileSync, statSync } from 'fs';
+import { join } from 'path';
 import { deflate } from 'pako';
 
 /**
@@ -21,9 +22,14 @@ export function listMdFiles(mdFilePath: string) {
     let mdFiles: string[] = [];
 
     readdirSync(mdFilePath).forEach(file => {
-        console.log(`file => ${file}`);
-        if (file.endsWith('.md')) {
-            mdFiles.push(file);
+        const inputFilePath = join(mdFilePath, file);
+
+        if (statSync(inputFilePath).isDirectory()) {
+            // a directory recurse to underlying directorie(s) and file(s)
+            mdFiles.concat(listMdFiles(inputFilePath));
+        } else if (file.endsWith('.md')) {
+            // add Mark Down File to Pre-Process
+            mdFiles.push(inputFilePath);
         }
     });
 
