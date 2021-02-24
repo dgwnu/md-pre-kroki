@@ -56,7 +56,10 @@ export function writePreProcessedMdDestFile(srcDir: string, destDir: string, src
         let subDestDir = destDir;
 
         for (const destPath of destPaths.slice(0, destPaths.length - 1)) {
-            createNewDirectory(join(subDestDir, destPath));
+            // move sub dest dir deeper
+            subDestDir = join(subDestDir, destPath);
+            // create non existing subdir
+            createNewDirectory(subDestDir);
         }
 
     }
