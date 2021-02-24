@@ -9,7 +9,8 @@ var KROKI_API_PLUGINS = [
     'plantuml',
     'c4plantuml',
     'bpmn',
-    'svgbob'
+    'svgbob',
+    'ditaa'
 ];
 var MD_INLINE = '```';
 var KROKI_API_URL = 'https://kroki.io/';

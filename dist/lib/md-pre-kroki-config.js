@@ -8,7 +8,8 @@ const KROKI_API_PLUGINS = [
     'plantuml',
     'c4plantuml',
     'bpmn',
-    'svgbob'
+    'svgbob',
+    'ditaa'
 ];
 const MD_INLINE = '```';
 const KROKI_API_URL = 'https://kroki.io/';
