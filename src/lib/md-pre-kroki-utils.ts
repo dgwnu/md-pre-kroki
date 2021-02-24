@@ -5,7 +5,7 @@
 /**
  * Node Package Imports
  */
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
+import { readdirSync, readFileSync, statSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import { join, sep } from 'path';
 import { deflate } from 'pako';
 
@@ -56,7 +56,13 @@ export function writeDestFile(srcDir: string, destDir: string, srcFilePath: stri
 
         for (const destPath of destPaths.slice(1, destPaths.length - 1)) {
                 subDirPath = join(subDirPath, destPath);
-                console.log(`destPath = ${subDirPath}`);
+
+                if (!existsSync(subDirPath)) {
+                    // create nonexisting subdirectories!
+                    mkdirSync(subDirPath);
+                    console.warn(`New subdir created => ${subDirPath}`);
+                }
+
         }
 
     }
