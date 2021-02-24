@@ -1,4 +1,5 @@
-import { readdirSync, readFileSync } from 'fs';
+import { readdirSync, statSync, writeFileSync, existsSync, mkdirSync, readFileSync } from 'fs';
+import { join, sep } from 'path';
 import { deflate } from 'pako';
 
 /**
@@ -46,14 +47,59 @@ var mdPreKrokiConfig = /** @class */ (function () {
  * List all files that ends with .md
  * @param mdFilePath path naar de .md files
  */
-function listMdFiles(mdFilePath) {
+function listMdFilePaths(mdFilePath) {
     var mdFiles = [];
     readdirSync(mdFilePath).forEach(function (file) {
-        if (file.endsWith('.md')) {
-            mdFiles.push(file);
+        var inputFilePath = join(mdFilePath, file);
+        if (statSync(inputFilePath).isDirectory()) {
+            // a directory recurse to underlying directorie(s) and file(s)
+            var mdDirFilePaths = listMdFilePaths(inputFilePath);
+            for (var _i = 0, mdDirFilePaths_1 = mdDirFilePaths; _i < mdDirFilePaths_1.length; _i++) {
+                var mdDirFilePath = mdDirFilePaths_1[_i];
+                mdFiles.push(mdDirFilePath);
+            }
+        }
+        else if (file.endsWith('.md')) {
+            // add Mark Down File to Pre-Process
+            mdFiles.push(inputFilePath);
         }
     });
     return mdFiles;
+}
+/**
+ * Write Pre-Processed File based on source and destination paths.
+ * @param srcDir source directory (source location of files that where Pre-Processed)
+ * @param destDir destination directory (destination location where Pre-Processed files should be written)
+ * @param srcFilePath source file path (the absolute path to the source file that was Pre-Prcoessed)
+ * @param preProcessedContent string with content for Pre-Processed File
+ */
+function writePreProcessedMdDestFile(srcDir, destDir, srcFilePath, preProcessedContent) {
+    var destPaths = srcFilePath.split(srcDir)[1].split(sep);
+    if (destPaths.length > 2) {
+        // at least one subdirectory found!
+        var subDestDir = destDir;
+        for (var _i = 0, _a = destPaths.slice(0, destPaths.length - 1); _i < _a.length; _i++) {
+            var destPath = _a[_i];
+            // move sub dest dir deeper
+            subDestDir = join(subDestDir, destPath);
+            // create non existing subdir
+            createNewDirectory(subDestDir);
+        }
+    }
+    var destFilePath = join(destDir, destPaths.join(sep));
+    writeFileSync(destFilePath, preProcessedContent);
+    console.log("Pre-Processed Destination File: " + destFilePath);
+}
+/**
+ * Create new directory when it not already exists
+ * @param newDir new directory to create
+ */
+function createNewDirectory(newDir) {
+    if (!existsSync(newDir)) {
+        // create nonexisting directory!
+        mkdirSync(newDir);
+        console.warn("New Directory created => " + newDir);
+    }
 }
 /**
  * Encode Diagram to make Roki Api request pay-load
@@ -121,4 +167,4 @@ function isMdInline(mdLine) {
     return mdLine.trim() == mdPreKrokiConfig.mdInlne;
 }
 
-export { encodeKrokiDiagram, listMdFiles, preProcessKrokiMdFile };
+export { createNewDirectory, encodeKrokiDiagram, listMdFilePaths, preProcessKrokiMdFile, writePreProcessedMdDestFile };

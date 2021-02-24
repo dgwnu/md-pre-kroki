@@ -1,6 +1,6 @@
 {
   "name": "@dgwnu/md-pre-kroki",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Mark Down Pre-Processor for Kroki-Api code based on GitLab Mark Down processing",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.esm.js",

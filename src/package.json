@@ -1,6 +1,6 @@
 {
   "name": "@dgwnu/md-pre-kroki-dev",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "description": "Mark Down Pre-Processor for Kroki-Api code based on GitLab Mark Down processing (development)",
   "scripts": {
     "build": "npm run build:lib && npm run build:cli",
