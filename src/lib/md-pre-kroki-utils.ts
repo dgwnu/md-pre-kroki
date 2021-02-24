@@ -51,9 +51,14 @@ export function writeDestFile(srcDir: string, destDir: string, srcFilePath: stri
     const destPaths = srcFilePath.split(srcDir)[1].split(sep);
 
     if ( destPaths.length > 2) {
+        // at least one subdirectory found!
+        let subDirPath = '';
+
         for (const destPath of destPaths.slice(1, destPaths.length - 1)) {
-                console.log(`destPath = ${destPath}`);
+                subDirPath = join(subDirPath, destPath);
+                console.log(`destPath = ${subDirPath}`);
         }
+
     }
     //console.log(`Writing To File: ${mdOutputMdFilePath}`)
     //writeFileSync(mdOutputMdFilePath, preProcessedMdStr);
