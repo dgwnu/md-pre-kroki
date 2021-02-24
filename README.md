@@ -21,7 +21,7 @@ npm install https://github.com/dgwnu/md-pre-kroki.git --save
 
 ## CLI-commands
 
-At this moment there is only some prelimannary support the pre-processing of __plantuml, c4plantuml, bpmn and svgbob__ api's.
+At this moment there is only some prelimannary support the pre-processing of __plantuml, c4plantuml, bpmn and svgbob, ditaa__ api's.
 
 
 
