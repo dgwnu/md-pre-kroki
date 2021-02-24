@@ -1,0 +1,3 @@
+# Inhoud
+
+* [Inleiding](README.md)
