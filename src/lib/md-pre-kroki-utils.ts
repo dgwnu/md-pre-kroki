@@ -5,8 +5,8 @@
 /**
  * Node Package Imports
  */
-import { readdirSync, readFileSync, statSync } from 'fs';
-import { join } from 'path';
+import { readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
+import { join, sep } from 'path';
 import { deflate } from 'pako';
 
 /**
@@ -39,6 +39,22 @@ export function listMdFilePaths(mdFilePath: string) {
     });
 
     return mdFiles;
+}
+
+/**
+ * Write Pre-Processed Destination File based on source and destionation paths.
+ * @param srcDir source directory (source location of files that are Pre-Processed)
+ * @param destDir destination directory (destination location where Pre-Processed files should be written)
+ * @param srcFilePath source file path (the absolute path to the source file that is Pre-Prcoessed)
+ */
+export function writeDestFile(srcDir: string, destDir: string, srcFilePath: string) {
+    const destPaths = srcFilePath.split(srcDir)[1].split(sep);
+
+    for (const destPath of destPaths) {
+        console.log(`destPath = ${destPath}`);
+    }
+    //console.log(`Writing To File: ${mdOutputMdFilePath}`)
+    //writeFileSync(mdOutputMdFilePath, preProcessedMdStr);
 }
 
 /**
