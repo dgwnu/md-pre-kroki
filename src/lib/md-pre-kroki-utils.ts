@@ -67,7 +67,7 @@ export function writeDestFile(srcDir: string, destDir: string, srcFilePath: stri
 
     }
 
-    const destFilePath = destPaths.join(sep);
+    const destFilePath = join(destDir, destPaths.join(sep));
     console.log(`Writing To File: ${destFilePath}`)
     //writeFileSync(mdOutputMdFilePath, preProcessedMdStr);
 }
