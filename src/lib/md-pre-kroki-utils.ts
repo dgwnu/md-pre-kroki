@@ -58,7 +58,7 @@ export function writeDestFile(srcDir: string, destDir: string, srcFilePath: stri
             subDestDir = join(subDestDir, destPath);
 
                 if (!existsSync(subDestDir)) {
-                    // create nonexisting subdirectories!
+                    // create nonexisting subdirectory!
                     mkdirSync(subDestDir);
                     console.warn(`New subDestDir created => ${subDestDir}`);
                 }
@@ -66,7 +66,9 @@ export function writeDestFile(srcDir: string, destDir: string, srcFilePath: stri
         }
 
     }
-    //console.log(`Writing To File: ${mdOutputMdFilePath}`)
+
+    const destFilePath = destPaths.join(sep);
+    console.log(`Writing To File: ${destFilePath}`)
     //writeFileSync(mdOutputMdFilePath, preProcessedMdStr);
 }
 
