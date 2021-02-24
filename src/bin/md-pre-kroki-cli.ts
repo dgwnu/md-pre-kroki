@@ -30,7 +30,7 @@ console.log(inputDir);
 const mdInputeFilePaths = listMdFilePaths(inputDir);
 
 for (const mdInputeFilePath of mdInputeFilePaths) {
-    //console.log('='.repeat(40));
+    console.log('='.repeat(40));
     console.log(`Pre-Processing: ${mdInputeFilePath}`);
     const preProcessedMdStr = preProcessKrokiMdFile(mdInputeFilePath);
     console.log('Processed Kroki Api Inline Mark Down:');
