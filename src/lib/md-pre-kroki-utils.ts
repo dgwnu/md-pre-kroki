@@ -52,15 +52,15 @@ export function writeDestFile(srcDir: string, destDir: string, srcFilePath: stri
 
     if ( destPaths.length > 2) {
         // at least one subdirectory found!
-        let subDirPath = '';
+        let subDestDir = destDir;
 
-        for (const destPath of destPaths.slice(1, destPaths.length - 1)) {
-                subDirPath = join(subDirPath, destPath);
+        for (const destPath of destPaths.slice(0, destPaths.length - 1)) {
+            subDestDir = join(subDestDir, destPath);
 
-                if (!existsSync(subDirPath)) {
+                if (!existsSync(subDestDir)) {
                     // create nonexisting subdirectories!
-                    mkdirSync(subDirPath);
-                    console.warn(`New subdir created => ${subDirPath}`);
+                    mkdirSync(subDestDir);
+                    console.warn(`New subDestDir created => ${subDestDir}`);
                 }
 
         }
