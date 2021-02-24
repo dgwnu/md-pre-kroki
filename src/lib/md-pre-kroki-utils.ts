@@ -42,12 +42,13 @@ export function listMdFilePaths(mdFilePath: string) {
 }
 
 /**
- * Write Pre-Processed Destination File based on source and destination paths.
+ * Write Pre-Processed File based on source and destination paths.
  * @param srcDir source directory (source location of files that where Pre-Processed)
  * @param destDir destination directory (destination location where Pre-Processed files should be written)
  * @param srcFilePath source file path (the absolute path to the source file that was Pre-Prcoessed)
+ * @param preProcessedContent string with content for Pre-Processed File
  */
-export function writeDestFile(srcDir: string, destDir: string, srcFilePath: string) {
+export function writePreProcessedMdDestFile(srcDir: string, destDir: string, srcFilePath: string, preProcessedContent: string) {
     const destPaths = srcFilePath.split(srcDir)[1].split(sep);
 
     if ( destPaths.length > 2) {
@@ -68,8 +69,8 @@ export function writeDestFile(srcDir: string, destDir: string, srcFilePath: stri
     }
 
     const destFilePath = join(destDir, destPaths.join(sep));
-    console.log(`Writing To File: ${destFilePath}`)
-    //writeFileSync(mdOutputMdFilePath, preProcessedMdStr);
+    writeFileSync(destFilePath, preProcessedContent);
+    console.log(`Pre-Processed Destination File: ${destFilePath}`);
 }
 
 /**

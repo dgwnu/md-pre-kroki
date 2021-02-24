@@ -13,7 +13,7 @@ import { resolve } from 'path';
 /**
  * CLI Library Modules
  */
-import { listMdFilePaths, preProcessKrokiMdFile, writeDestFile } from '../lib';
+import { listMdFilePaths, preProcessKrokiMdFile, writePreProcessedMdDestFile } from '../lib';
 
 //
 // START CLI Script
@@ -32,11 +32,8 @@ const mdInputeFilePaths = listMdFilePaths(inputDir);
 for (const mdInputeFilePath of mdInputeFilePaths) {
     console.log('='.repeat(40));
     console.log(`Pre-Processing: ${mdInputeFilePath}`);
-    const preProcessedMdStr = preProcessKrokiMdFile(mdInputeFilePath);
-    console.log('Processed Kroki Api Inline Mark Down:');
+    const preProcessedMdContent = preProcessKrokiMdFile(mdInputeFilePath);
     console.log('-'.repeat(40));
-    console.log(`${preProcessedMdStr}`);
-    console.log('-'.repeat(40));
-    writeDestFile(inputDir, outputDir, mdInputeFilePath);
+    writePreProcessedMdDestFile(inputDir, outputDir, mdInputeFilePath, preProcessedMdContent);
     console.log('='.repeat(40));
 }
