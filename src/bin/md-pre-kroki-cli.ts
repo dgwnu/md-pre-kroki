@@ -8,13 +8,12 @@
  * Node Package Modules
  */
 import { argv } from 'process';
-import { resolve, join } from 'path';
-import { writeFileSync } from 'fs';
+import { resolve } from 'path';
 
 /**
  * CLI Library Modules
  */
-import { listMdFilePaths, preProcessKrokiMdFile } from '../lib';
+import { listMdFilePaths, preProcessKrokiMdFile, writeDestFile } from '../lib';
 
 //
 // START CLI Script
@@ -38,8 +37,6 @@ for (const mdInputeFilePath of mdInputeFilePaths) {
     console.log('-'.repeat(40));
     console.log(`${preProcessedMdStr}`);
     console.log('-'.repeat(40));
-    const mdOutputMdFilePath = join(outputDir, mdInputeFilePath.split(inputDir)[1]);
-    console.log(`Writing To File: ${mdOutputMdFilePath}`)
-    writeFileSync(mdOutputMdFilePath, preProcessedMdStr);
+    writeDestFile(inputDir, outputDir, mdInputeFilePath);
     console.log('='.repeat(40));
 }
