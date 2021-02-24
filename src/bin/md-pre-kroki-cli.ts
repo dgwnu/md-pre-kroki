@@ -13,7 +13,7 @@ import { resolve } from 'path';
 /**
  * CLI Library Modules
  */
-import { listMdFilePaths, preProcessKrokiMdFile, writePreProcessedMdDestFile } from '../lib';
+import { listMdFilePaths, preProcessKrokiMdFile, writePreProcessedMdDestFile, createNewDirectory } from '../lib';
 
 //
 // START CLI Script
@@ -23,12 +23,13 @@ if (argv.length != 4) {
     console.error('2 parms required (inputDir outputDir)');
 }
 
+// get parms and initialize pre-processing
 const inputDir = resolve(argv[2]);
 const outputDir = resolve(argv[3]);
-
-console.log(inputDir);
 const mdInputeFilePaths = listMdFilePaths(inputDir);
+createNewDirectory(outputDir);
 
+// pre-process and write results
 for (const mdInputeFilePath of mdInputeFilePaths) {
     console.log('='.repeat(40));
     console.log(`Pre-Processing: ${mdInputeFilePath}`);

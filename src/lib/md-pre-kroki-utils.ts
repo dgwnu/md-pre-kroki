@@ -56,14 +56,7 @@ export function writePreProcessedMdDestFile(srcDir: string, destDir: string, src
         let subDestDir = destDir;
 
         for (const destPath of destPaths.slice(0, destPaths.length - 1)) {
-            subDestDir = join(subDestDir, destPath);
-
-                if (!existsSync(subDestDir)) {
-                    // create nonexisting subdirectory!
-                    mkdirSync(subDestDir);
-                    console.warn(`New subDestDir created => ${subDestDir}`);
-                }
-
+            createNewDirectory(join(subDestDir, destPath));
         }
 
     }
@@ -71,6 +64,20 @@ export function writePreProcessedMdDestFile(srcDir: string, destDir: string, src
     const destFilePath = join(destDir, destPaths.join(sep));
     writeFileSync(destFilePath, preProcessedContent);
     console.log(`Pre-Processed Destination File: ${destFilePath}`);
+}
+
+/**
+ * Create new directory when it not already exists
+ * @param newDir new directory to create
+ */
+export function createNewDirectory(newDir: string) {
+
+    if (!existsSync(newDir)) {
+        // create nonexisting directory!
+        mkdirSync(newDir);
+        console.warn(`New Directory created => ${newDir}`);
+    }
+
 }
 
 /**
