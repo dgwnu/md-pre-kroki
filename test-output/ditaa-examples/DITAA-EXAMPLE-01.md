@@ -1,3 +1,0 @@
-# Ditaa Example 01
-
-![kroki api](https://kroki.io/ditaa/svg/eNpTUFBQ0NaFAm0kDoiN4HCBeDUKUFCjAJJPySxJTAQpsYPL1MDUhaRWlEA0oJhXk5KZmF6UmAtV55KfXJqbmlcCUlejmJuYnpmsWINsUw2SvdUptTXIUpjqQFZpE-EPELBSwAXiuBSQrQACn_ySYoX8NIXy_KJsZPuQTcYE2gCMCEP4 "kroki.io")
