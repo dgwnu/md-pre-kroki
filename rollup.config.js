@@ -1,7 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 
-const srcFilePath = './lib/index.ts';
-const distFilePathPrefix = '../dist/lib/index.';
+const srcFilePath = './src/lib/index.ts';
+const distFilePathPrefix = './dist/lib/index.';
 
 const rollupParms = { tsconfig: 'ts-lib-config.json' };
 

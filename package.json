@@ -7,6 +7,12 @@
   "bin": {
     "mdprekroki": "dist/bin/md-pre-kroki-cli.js"
   },
+  "scripts": {
+    "build": "npm run build:lib && npm run build:cli",
+    "build:cli": "tsc -p ts-cli-config.json",
+    "build:lib": "rollup -c",
+    "test": "ts-node -P ts-node-config.json src/bin/md-pre-kroki-cli.ts test-input test-output"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dgwnu/md-pre-kroki.git"
@@ -22,6 +28,14 @@
     "url": "https://github.com/dgwnu/md-pre-kroki/issues"
   },
   "homepage": "https://github.com/dgwnu/md-pre-kroki#readme",
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "@types/pako": "^1.0.1",
+    "rollup": "^2.39.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  },
   "dependencies": {
     "pako": "^2.0.3"
   }
