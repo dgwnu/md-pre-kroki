@@ -6,11 +6,27 @@ import { deflate } from 'pako';
  * Kroki Inline Api Defaults
  */
 var KROKI_API_PLUGINS = [
-    'plantuml',
-    'c4plantuml',
+    'blockdiag',
     'bpmn',
+    'bytefield',
+    'seqdiag',
+    'actdiag',
+    'nwdiag',
+    'packetdiag',
+    'rackdiag',
+    'c4plantuml',
+    'ditaa',
+    'erd',
+    'excalidraw',
+    'graphviz',
+    'mermaid',
+    'nomnoml',
+    'plantuml',
     'svgbob',
-    'ditaa'
+    'umlet',
+    'vega',
+    'vegalite',
+    'wavedrom'
 ];
 var MD_INLINE = '```';
 var KROKI_API_URL = 'https://kroki.io/';

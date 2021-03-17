@@ -5,11 +5,27 @@ exports.mdPreKrokiConfig = void 0;
  * Kroki Inline Api Defaults
  */
 const KROKI_API_PLUGINS = [
-    'plantuml',
-    'c4plantuml',
+    'blockdiag',
     'bpmn',
+    'bytefield',
+    'seqdiag',
+    'actdiag',
+    'nwdiag',
+    'packetdiag',
+    'rackdiag',
+    'c4plantuml',
+    'ditaa',
+    'erd',
+    'excalidraw',
+    'graphviz',
+    'mermaid',
+    'nomnoml',
+    'plantuml',
     'svgbob',
-    'ditaa'
+    'umlet',
+    'vega',
+    'vegalite',
+    'wavedrom'
 ];
 const MD_INLINE = '```';
 const KROKI_API_URL = 'https://kroki.io/';
