@@ -3,7 +3,7 @@
  * DGWNU Utils to Pre-Process Mark Down with Kroki Diagram Apis
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.preProcessKrokiMdFile = exports.encodeKrokiDiagram = exports.createNewDirectory = exports.writePreProcessedMdDestFile = exports.listMdFilePaths = void 0;
+exports.preProcessKrokiMdContent = exports.preProcessKrokiMdFile = exports.encodeKrokiDiagram = exports.createNewDirectory = exports.writePreProcessedMdDestFile = exports.listMdFilePaths = void 0;
 /**
  * Node Package Imports
  */
@@ -93,7 +93,18 @@ exports.encodeKrokiDiagram = encodeKrokiDiagram;
  * @returns Basic Mard Down format String with Kroki Inline(s) converted to Kroki Api References(s)
  */
 function preProcessKrokiMdFile(inputMdFilePath) {
-    const inputMdLines = fs_1.readFileSync(inputMdFilePath, 'utf-8').split('\n');
+    const mdContentStr = fs_1.readFileSync(inputMdFilePath, 'utf-8');
+    return preProcessKrokiMdContent(mdContentStr);
+}
+exports.preProcessKrokiMdFile = preProcessKrokiMdFile;
+/**
+ * Pre-Process a Kroki Mark Down Content String to basic Mark Down format string
+ * @param inputMdFilePath Absolute Kroki Mark Down File Path to Pre-Process
+ *
+ * @returns Basic Mard Down format String with Kroki Inline(s) converted to Kroki Api References(s)
+ */
+function preProcessKrokiMdContent(mdContentStr) {
+    const inputMdLines = mdContentStr.split('\n');
     let outputMdLines = [];
     let lineIndex = 0;
     while (lineIndex < inputMdLines.length) {
@@ -123,7 +134,7 @@ function preProcessKrokiMdFile(inputMdFilePath) {
     }
     return outputMdLines.join('\n');
 }
-exports.preProcessKrokiMdFile = preProcessKrokiMdFile;
+exports.preProcessKrokiMdContent = preProcessKrokiMdContent;
 /**
  * Check for Mark Down Inline starting Kroki Api Plugin Data
  * @param mdLine Mark Down Line string to check

@@ -137,7 +137,17 @@ function encodeKrokiDiagram(diagramSource) {
  * @returns Basic Mard Down format String with Kroki Inline(s) converted to Kroki Api References(s)
  */
 function preProcessKrokiMdFile(inputMdFilePath) {
-    var inputMdLines = readFileSync(inputMdFilePath, 'utf-8').split('\n');
+    var mdContentStr = readFileSync(inputMdFilePath, 'utf-8');
+    return preProcessKrokiMdContent(mdContentStr);
+}
+/**
+ * Pre-Process a Kroki Mark Down Content String to basic Mark Down format string
+ * @param inputMdFilePath Absolute Kroki Mark Down File Path to Pre-Process
+ *
+ * @returns Basic Mard Down format String with Kroki Inline(s) converted to Kroki Api References(s)
+ */
+function preProcessKrokiMdContent(mdContentStr) {
+    var inputMdLines = mdContentStr.split('\n');
     var outputMdLines = [];
     var lineIndex = 0;
     while (lineIndex < inputMdLines.length) {
@@ -184,4 +194,4 @@ function isMdInline(mdLine) {
     return mdLine.trim() == mdPreKrokiConfig.mdInlne;
 }
 
-export { createNewDirectory, encodeKrokiDiagram, listMdFilePaths, preProcessKrokiMdFile, writePreProcessedMdDestFile };
+export { createNewDirectory, encodeKrokiDiagram, listMdFilePaths, preProcessKrokiMdContent, preProcessKrokiMdFile, writePreProcessedMdDestFile };

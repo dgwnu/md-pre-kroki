@@ -32,3 +32,10 @@ export declare function encodeKrokiDiagram(diagramSource: string): string;
  * @returns Basic Mard Down format String with Kroki Inline(s) converted to Kroki Api References(s)
  */
 export declare function preProcessKrokiMdFile(inputMdFilePath: string): string;
+/**
+ * Pre-Process a Kroki Mark Down Content String to basic Mark Down format string
+ * @param inputMdFilePath Absolute Kroki Mark Down File Path to Pre-Process
+ *
+ * @returns Basic Mard Down format String with Kroki Inline(s) converted to Kroki Api References(s)
+ */
+export declare function preProcessKrokiMdContent(mdContentStr: string): string;
