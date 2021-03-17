@@ -103,7 +103,18 @@ export function encodeKrokiDiagram(diagramSource: string) {
  * @returns Basic Mard Down format String with Kroki Inline(s) converted to Kroki Api References(s)
  */
 export function preProcessKrokiMdFile(inputMdFilePath: string) {
-    const inputMdLines = readFileSync(inputMdFilePath, 'utf-8').split('\n');
+    const mdContentStr = readFileSync(inputMdFilePath, 'utf-8');
+    return preProcessKrokiMdContent(mdContentStr);
+}
+
+/**
+ * Pre-Process a Kroki Mark Down Content String to basic Mark Down format string
+ * @param inputMdFilePath Absolute Kroki Mark Down File Path to Pre-Process
+ * 
+ * @returns Basic Mard Down format String with Kroki Inline(s) converted to Kroki Api References(s)
+ */
+export function preProcessKrokiMdContent(mdContentStr: string) {
+    const inputMdLines = mdContentStr.split('\n');
     let outputMdLines: string[] = [];
     let lineIndex = 0;
 
