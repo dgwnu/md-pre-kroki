@@ -165,6 +165,8 @@ export function preProcessKrokiMdContent(mdContentStr: string) {
  */
 export function includeMdAssets(srcDir: string, destDir: string, relFilePath: string, mdContent: string) {
     const mdContentLines = mdContent.split('\n');
+    const relFilePaths = relFilePath.split(sep);
+    const relPath = relFilePaths.slice(0, relFilePaths.length - 1).join(sep);
 
     for (const mdContentLine of mdContentLines) {
         const assetParts = mdContentLine.split('![');
@@ -179,8 +181,8 @@ export function includeMdAssets(srcDir: string, destDir: string, relFilePath: st
                 if (!(assetLink.startsWith('http://') || assetLink.startsWith('https://'))) {
                     console.log(srcDir);
                     console.log(destDir);
-                    console.log(relFilePath);
-                    console.log(`Internal assetLink = ${assetLink}`);
+                    const relAssetFilePath = join(relPath, assetLink);
+                    console.log(`relAssetFilePath = ${relAssetFilePath}`);
                 }
             }
         }
