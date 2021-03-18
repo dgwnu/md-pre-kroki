@@ -49,7 +49,8 @@ export function listMdFilePaths(mdFilePath: string) {
  * @param preProcessedContent string with content for Pre-Processed File
  */
 export function writePreProcessedDestFile(srcDir: string, destDir: string, srcFilePath: string, preProcessedContent: string) {
-    const destPaths = srcFilePath.split(srcDir)[1].split(sep);
+    const relFilePath = srcFilePath.split(srcDir)[1];
+    const destPaths = relFilePath.split(sep);
 
     if ( destPaths.length > 2) {
         // at least one subdirectory found!
@@ -64,7 +65,6 @@ export function writePreProcessedDestFile(srcDir: string, destDir: string, srcFi
 
     }
 
-    const relFilePath = destPaths.join(sep);
     const destFilePath = join(destDir, relFilePath);
     // write processed content to dest
     writeFileSync(destFilePath, preProcessedContent);
