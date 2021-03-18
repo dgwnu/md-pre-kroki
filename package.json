@@ -11,7 +11,8 @@
     "build": "npm run build:lib && npm run build:cli",
     "build:cli": "tsc -p ts-cli-config.json",
     "build:lib": "rollup -c",
-    "test": "ts-node -P ts-node-config.json src/bin/md-pre-kroki-cli.ts test-input test-output"
+    "start": "ts-node -P ts-node-config.json src/bin/md-pre-kroki-cli.ts test-input test-output",
+    "test": "node dist/bin/md-pre-kroki-cli.js test-input test-output"
   },
   "repository": {
     "type": "git",
