@@ -49,7 +49,24 @@ export function listMdFilePaths(mdFilePath: string) {
  * @param preProcessedContent string with content for Pre-Processed File
  */
 export function writePreProcessedDestFile(srcDir: string, destDir: string, srcFilePath: string, preProcessedContent: string) {
+    // init file paths
     const relFilePath = srcFilePath.split(srcDir)[1];
+    const destFilePath = join(destDir, relFilePath);
+    // create destination directory paths
+    createSubDirectories(destDir, relFilePath);
+    // write processed content to destination
+    writeFileSync(destFilePath, preProcessedContent);
+    // include internal asset files in dest
+    includeMdAssets(srcDir, destDir, relFilePath, preProcessedContent);
+    console.log(`Pre-Processed Destination File: ${destFilePath}`);
+}
+
+/**
+ * Create new subdirectories beneath destination directory
+ * @param destDir destination directory
+ * @param relFilePath relative file path beneath destination directory
+ */
+export function createSubDirectories(destDir: string, relFilePath: string) {
     const destPaths = relFilePath.split(sep);
 
     if ( destPaths.length > 2) {
@@ -65,12 +82,6 @@ export function writePreProcessedDestFile(srcDir: string, destDir: string, srcFi
 
     }
 
-    const destFilePath = join(destDir, relFilePath);
-    // write processed content to dest
-    writeFileSync(destFilePath, preProcessedContent);
-    console.log(`Pre-Processed Destination File: ${destFilePath}`);
-    // include internal asset files in dest
-    includeMdAssets(srcDir, destDir, relFilePath, preProcessedContent);
 }
 
 /**
