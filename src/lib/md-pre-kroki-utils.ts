@@ -180,27 +180,35 @@ export function includeMdAssets(srcDir: string, destDir: string, relFilePath: st
     const relPath = relFilePaths.slice(0, relFilePaths.length - 1).join(sep);
 
     for (const mdContentLine of mdContentLines) {
-        const assetParts = mdContentLine.split('![');
+        const relAssetFilePath = extractRelAssetFilePath(relPath, mdContentLine);
 
-        if (assetParts.length == 2) {
-
-            const linkParts = assetParts[1].split('](');
-
-            if (linkParts.length == 2) {
-                const assetLink = linkParts[1].split(')')[0];
-
-                if (!(assetLink.startsWith('http://') || assetLink.startsWith('https://'))) {
-                    console.log(srcDir);
-                    console.log(destDir);
-                    const relAssetFilePath = join(relPath, assetLink);
-                    console.log(`relAssetFilePath = ${relAssetFilePath}`);
-                }
-            }
+        if (relAssetFilePath) {
+            console.log(`relAssetFilePath = ${relAssetFilePath}`);
         }
 
     }
 }
 
+export function extractRelAssetFilePath(relPath: string, mdContentLine: string) {
+    let relAssetFilePath: string;
+
+    const assetParts = mdContentLine.split('![');
+
+    if (assetParts.length == 2) {
+
+        const linkParts = assetParts[1].split('](');
+
+        if (linkParts.length == 2) {
+            const assetLink = linkParts[1].split(')')[0];
+
+            if (!(assetLink.startsWith('http://') || assetLink.startsWith('https://'))) {
+                relAssetFilePath = join(relPath, assetLink);
+            }
+        }
+    }
+
+    return relAssetFilePath;
+}
 
 /**
  * Check for Mark Down Inline starting Kroki Api Plugin Data
