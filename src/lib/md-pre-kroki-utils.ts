@@ -64,9 +64,13 @@ export function writePreProcessedDestFile(srcDir: string, destDir: string, srcFi
 
     }
 
-    const destFilePath = join(destDir, destPaths.join(sep));
+    const relFilePath = destPaths.join(sep);
+    const destFilePath = join(destDir, relFilePath);
+    // write processed content to dest
     writeFileSync(destFilePath, preProcessedContent);
     console.log(`Pre-Processed Destination File: ${destFilePath}`);
+    // include internal asset files in dest
+    includeMdAssets(srcDir, destDir, relFilePath, preProcessedContent);
 }
 
 /**
