@@ -167,14 +167,20 @@ export function includeMdAssets(srcDir: string, destDir: string, relFilePath: st
     const mdContentLines = mdContent.split('\n');
 
     for (const mdContentLine of mdContentLines) {
-        const assetFragment = mdContentLine.split('![')[1].split('](')[1].split(')')[0];
+        const assetParts = mdContentLine.split('![');
 
-        if (assetFragment != mdContentLine) {
-            console.log(srcDir);
-            console.log(destDir);
-            console.log(relFilePath);
-            console.log(`assetFragment = ${assetFragment}`);
+        if (assetParts.length == 2) {
+            const linkParts = assetParts[1].split('](');
+
+            if (linkParts.length == 2) {
+                const assetLink = linkParts[1].split(')')[0];
+                console.log(srcDir);
+                console.log(destDir);
+                console.log(relFilePath);
+                console.log(`assetLink = ${assetLink}`);
+            }
         }
+
     }
 }
 
