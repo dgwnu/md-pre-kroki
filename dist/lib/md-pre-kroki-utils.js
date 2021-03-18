@@ -3,7 +3,7 @@
  * DGWNU Utils to Pre-Process Mark Down with Kroki Diagram Apis
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.preProcessKrokiMdContent = exports.preProcessKrokiMdFile = exports.encodeKrokiDiagram = exports.createNewDirectory = exports.writePreProcessedDestFile = exports.listMdFilePaths = void 0;
+exports.extractRelAssetFilePath = exports.includeMdAssets = exports.preProcessKrokiMdContent = exports.preProcessKrokiMdFile = exports.encodeKrokiDiagram = exports.createNewDirectory = exports.createSubDirectories = exports.writePreProcessedDestFile = exports.listMdFilePaths = void 0;
 /**
  * Node Package Imports
  */
@@ -45,8 +45,27 @@ exports.listMdFilePaths = listMdFilePaths;
  * @param preProcessedContent string with content for Pre-Processed File
  */
 function writePreProcessedDestFile(srcDir, destDir, srcFilePath, preProcessedContent) {
-    const destPaths = srcFilePath.split(srcDir)[1].split(path_1.sep);
-    if (destPaths.length > 2) {
+    // init file paths
+    const relFilePath = srcFilePath.split(srcDir)[1];
+    const destFilePath = path_1.join(destDir, relFilePath);
+    // create destination directory paths
+    createSubDirectories(destDir, relFilePath);
+    // write processed content to destination
+    fs_1.writeFileSync(destFilePath, preProcessedContent);
+    // include internal asset files in dest
+    includeMdAssets(srcDir, destDir, relFilePath, preProcessedContent);
+    console.log(`Pre-Processed Destination File: ${destFilePath}`);
+}
+exports.writePreProcessedDestFile = writePreProcessedDestFile;
+/**
+ * Create new subdirectories beneath destination directory
+ * @param destDir destination directory
+ * @param relFilePath relative file path beneath destination directory
+ */
+function createSubDirectories(destDir, relFilePath) {
+    // split into desrinations subpaths and remove empty ones
+    const destPaths = relFilePath.split(path_1.sep).filter(subPath => subPath != '');
+    if (destPaths.length > 1) {
         // at least one subdirectory found!
         let subDestDir = destDir;
         for (const destPath of destPaths.slice(0, destPaths.length - 1)) {
@@ -56,11 +75,8 @@ function writePreProcessedDestFile(srcDir, destDir, srcFilePath, preProcessedCon
             createNewDirectory(subDestDir);
         }
     }
-    const destFilePath = path_1.join(destDir, destPaths.join(path_1.sep));
-    fs_1.writeFileSync(destFilePath, preProcessedContent);
-    console.log(`Pre-Processed Destination File: ${destFilePath}`);
 }
-exports.writePreProcessedDestFile = writePreProcessedDestFile;
+exports.createSubDirectories = createSubDirectories;
 /**
  * Create new directory when it not already exists
  * @param newDir new directory to create
@@ -135,6 +151,50 @@ function preProcessKrokiMdContent(mdContentStr) {
     return outputMdLines.join('\n');
 }
 exports.preProcessKrokiMdContent = preProcessKrokiMdContent;
+/**
+ * Include the Markdow assets (pictures etc. that are internal linked like ./ or ../ etc.)
+ * @param srcDir source directtory of the md file
+ * @param destDir destination directory for the md file
+ * @param relFilePath relative path to the md file
+ * @param mdContent content of the md file (with eventually links to include)
+ */
+function includeMdAssets(srcDir, destDir, relFilePath, mdContent) {
+    const mdContentLines = mdContent.split('\n');
+    const relFilePaths = relFilePath.split(path_1.sep);
+    const relPath = relFilePaths.slice(0, relFilePaths.length - 1).join(path_1.sep);
+    for (const mdContentLine of mdContentLines) {
+        const relAssetFilePath = extractRelAssetFilePath(relPath, mdContentLine);
+        if (relAssetFilePath) {
+            console.log(`relAssetFilePath = ${relAssetFilePath}`);
+            // create asset destination directory paths
+            createSubDirectories(destDir, relAssetFilePath);
+            // copy asset file to include
+            fs_1.copyFileSync(path_1.join(srcDir, relAssetFilePath), path_1.join(destDir, relAssetFilePath));
+        }
+    }
+}
+exports.includeMdAssets = includeMdAssets;
+/**
+ * extract relative asset file path from a Markdown content line
+ * @param relPath relative path of the Markdown content file
+ * @param mdContentLine Markdown content
+ * @returns a relative asset file path | empty value
+ */
+function extractRelAssetFilePath(relPath, mdContentLine) {
+    let relAssetFilePath = '';
+    const assetParts = mdContentLine.split('![');
+    if (assetParts.length == 2) {
+        const linkParts = assetParts[1].split('](');
+        if (linkParts.length == 2) {
+            const assetLink = linkParts[1].split(')')[0];
+            if (!(assetLink.startsWith('http://') || assetLink.startsWith('https://'))) {
+                relAssetFilePath = path_1.join(relPath, assetLink);
+            }
+        }
+    }
+    return relAssetFilePath != '' ? relAssetFilePath : undefined;
+}
+exports.extractRelAssetFilePath = extractRelAssetFilePath;
 /**
  * Check for Mark Down Inline starting Kroki Api Plugin Data
  * @param mdLine Mark Down Line string to check

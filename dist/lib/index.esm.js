@@ -1,4 +1,4 @@
-import { readdirSync, statSync, writeFileSync, existsSync, mkdirSync, readFileSync } from 'fs';
+import { readdirSync, statSync, writeFileSync, existsSync, mkdirSync, readFileSync, copyFileSync } from 'fs';
 import { join, sep } from 'path';
 import { deflate } from 'pako';
 
@@ -91,8 +91,26 @@ function listMdFilePaths(mdFilePath) {
  * @param preProcessedContent string with content for Pre-Processed File
  */
 function writePreProcessedDestFile(srcDir, destDir, srcFilePath, preProcessedContent) {
-    var destPaths = srcFilePath.split(srcDir)[1].split(sep);
-    if (destPaths.length > 2) {
+    // init file paths
+    var relFilePath = srcFilePath.split(srcDir)[1];
+    var destFilePath = join(destDir, relFilePath);
+    // create destination directory paths
+    createSubDirectories(destDir, relFilePath);
+    // write processed content to destination
+    writeFileSync(destFilePath, preProcessedContent);
+    // include internal asset files in dest
+    includeMdAssets(srcDir, destDir, relFilePath, preProcessedContent);
+    console.log("Pre-Processed Destination File: " + destFilePath);
+}
+/**
+ * Create new subdirectories beneath destination directory
+ * @param destDir destination directory
+ * @param relFilePath relative file path beneath destination directory
+ */
+function createSubDirectories(destDir, relFilePath) {
+    // split into desrinations subpaths and remove empty ones
+    var destPaths = relFilePath.split(sep).filter(function (subPath) { return subPath != ''; });
+    if (destPaths.length > 1) {
         // at least one subdirectory found!
         var subDestDir = destDir;
         for (var _i = 0, _a = destPaths.slice(0, destPaths.length - 1); _i < _a.length; _i++) {
@@ -103,9 +121,6 @@ function writePreProcessedDestFile(srcDir, destDir, srcFilePath, preProcessedCon
             createNewDirectory(subDestDir);
         }
     }
-    var destFilePath = join(destDir, destPaths.join(sep));
-    writeFileSync(destFilePath, preProcessedContent);
-    console.log("Pre-Processed Destination File: " + destFilePath);
 }
 /**
  * Create new directory when it not already exists
@@ -178,6 +193,49 @@ function preProcessKrokiMdContent(mdContentStr) {
     return outputMdLines.join('\n');
 }
 /**
+ * Include the Markdow assets (pictures etc. that are internal linked like ./ or ../ etc.)
+ * @param srcDir source directtory of the md file
+ * @param destDir destination directory for the md file
+ * @param relFilePath relative path to the md file
+ * @param mdContent content of the md file (with eventually links to include)
+ */
+function includeMdAssets(srcDir, destDir, relFilePath, mdContent) {
+    var mdContentLines = mdContent.split('\n');
+    var relFilePaths = relFilePath.split(sep);
+    var relPath = relFilePaths.slice(0, relFilePaths.length - 1).join(sep);
+    for (var _i = 0, mdContentLines_1 = mdContentLines; _i < mdContentLines_1.length; _i++) {
+        var mdContentLine = mdContentLines_1[_i];
+        var relAssetFilePath = extractRelAssetFilePath(relPath, mdContentLine);
+        if (relAssetFilePath) {
+            console.log("relAssetFilePath = " + relAssetFilePath);
+            // create asset destination directory paths
+            createSubDirectories(destDir, relAssetFilePath);
+            // copy asset file to include
+            copyFileSync(join(srcDir, relAssetFilePath), join(destDir, relAssetFilePath));
+        }
+    }
+}
+/**
+ * extract relative asset file path from a Markdown content line
+ * @param relPath relative path of the Markdown content file
+ * @param mdContentLine Markdown content
+ * @returns a relative asset file path | empty value
+ */
+function extractRelAssetFilePath(relPath, mdContentLine) {
+    var relAssetFilePath = '';
+    var assetParts = mdContentLine.split('![');
+    if (assetParts.length == 2) {
+        var linkParts = assetParts[1].split('](');
+        if (linkParts.length == 2) {
+            var assetLink = linkParts[1].split(')')[0];
+            if (!(assetLink.startsWith('http://') || assetLink.startsWith('https://'))) {
+                relAssetFilePath = join(relPath, assetLink);
+            }
+        }
+    }
+    return relAssetFilePath != '' ? relAssetFilePath : undefined;
+}
+/**
  * Check for Mark Down Inline starting Kroki Api Plugin Data
  * @param mdLine Mark Down Line string to check
  * @returns true: a Kroki Api Plugin Data Mark Down, false: is not...
@@ -194,4 +252,4 @@ function isMdInline(mdLine) {
     return mdLine.trim() == mdPreKrokiConfig.mdInlne;
 }
 
-export { createNewDirectory, encodeKrokiDiagram, listMdFilePaths, preProcessKrokiMdContent, preProcessKrokiMdFile, writePreProcessedDestFile };
+export { createNewDirectory, createSubDirectories, encodeKrokiDiagram, extractRelAssetFilePath, includeMdAssets, listMdFilePaths, preProcessKrokiMdContent, preProcessKrokiMdFile, writePreProcessedDestFile };

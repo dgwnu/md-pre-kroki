@@ -201,7 +201,7 @@ export function includeMdAssets(srcDir: string, destDir: string, relFilePath: st
  * @returns a relative asset file path | empty value
  */
 export function extractRelAssetFilePath(relPath: string, mdContentLine: string) {
-    let relAssetFilePath: string;
+    let relAssetFilePath = '';
 
     const assetParts = mdContentLine.split('![');
 
@@ -218,7 +218,7 @@ export function extractRelAssetFilePath(relPath: string, mdContentLine: string) 
         }
     }
 
-    return relAssetFilePath;
+    return relAssetFilePath != '' ? relAssetFilePath : undefined;
 }
 
 /**
