@@ -67,9 +67,10 @@ export function writePreProcessedDestFile(srcDir: string, destDir: string, srcFi
  * @param relFilePath relative file path beneath destination directory
  */
 export function createSubDirectories(destDir: string, relFilePath: string) {
-    const destPaths = relFilePath.split(sep);
+    // split into desrinations subpaths and remove empty ones
+    const destPaths = relFilePath.split(sep).filter(subPath => subPath != '');
 
-    if ( destPaths.length > 2) {
+    if ( destPaths.length > 1) {
         // at least one subdirectory found!
         let subDestDir = destDir;
 
