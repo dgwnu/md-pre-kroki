@@ -153,6 +153,29 @@ export function preProcessKrokiMdContent(mdContentStr: string) {
 }
 
 /**
+ * Include the Markdow assets (pictures etc. that are internal linked like ./ or ../ etc.)
+ * @param srcDir source directtory of the md file
+ * @param destDir destination directory for the md file
+ * @param relFilePath relative path to the md file
+ * @param mdContent content of the md file (with eventually links to include)
+ */
+export function includeMdAssets(srcDir: string, destDir: string, relFilePath: string, mdContent: string) {
+    const mdContentLines = mdContent.split('\n');
+
+    for (const mdContentLine of mdContentLines) {
+        const assetFragment = mdContentLine.split('![')[1].split('](')[1].split(')')[0];
+
+        if (assetFragment != mdContentLine) {
+            console.log(srcDir);
+            console.log(destDir);
+            console.log(relFilePath);
+            console.log(`assetFragment = ${assetFragment}`);
+        }
+    }
+}
+
+
+/**
  * Check for Mark Down Inline starting Kroki Api Plugin Data
  * @param mdLine Mark Down Line string to check
  * @returns true: a Kroki Api Plugin Data Mark Down, false: is not...
