@@ -170,14 +170,18 @@ export function includeMdAssets(srcDir: string, destDir: string, relFilePath: st
         const assetParts = mdContentLine.split('![');
 
         if (assetParts.length == 2) {
+
             const linkParts = assetParts[1].split('](');
 
             if (linkParts.length == 2) {
                 const assetLink = linkParts[1].split(')')[0];
-                console.log(srcDir);
-                console.log(destDir);
-                console.log(relFilePath);
-                console.log(`assetLink = ${assetLink}`);
+
+                if (!(assetLink.startsWith('http://') || assetLink.startsWith('https://'))) {
+                    console.log(srcDir);
+                    console.log(destDir);
+                    console.log(relFilePath);
+                    console.log(`Internal assetLink = ${assetLink}`);
+                }
             }
         }
 
