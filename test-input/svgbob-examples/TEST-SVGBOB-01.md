@@ -13,3 +13,7 @@ Test Md Pre Kroki Cli
                                 |____| |  |
                                 /::::/ |__|
 ```
+
+**Plaatje Figuur:**
+
+![OnnoAvatar](./Figuurmap/OnnoAvatar.svg)
