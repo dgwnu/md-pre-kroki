@@ -5,7 +5,7 @@
 /**
  * Node Package Imports
  */
-import { readdirSync, readFileSync, statSync, writeFileSync, existsSync, mkdirSync } from 'fs';
+import { readdirSync, readFileSync, statSync, writeFileSync, existsSync, mkdirSync, copyFileSync } from 'fs';
 import { join, sep } from 'path';
 import { deflate } from 'pako';
 
@@ -184,6 +184,10 @@ export function includeMdAssets(srcDir: string, destDir: string, relFilePath: st
 
         if (relAssetFilePath) {
             console.log(`relAssetFilePath = ${relAssetFilePath}`);
+            // create asset destination directory paths
+            createSubDirectories(destDir, relAssetFilePath);
+            // copy asset file to include
+            copyFileSync(join(srcDir, relAssetFilePath), join(destDir, relAssetFilePath));
         }
 
     }
