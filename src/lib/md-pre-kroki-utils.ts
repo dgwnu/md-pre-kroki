@@ -189,6 +189,12 @@ export function includeMdAssets(srcDir: string, destDir: string, relFilePath: st
     }
 }
 
+/**
+ * extract relative asset file path from a Markdown content line
+ * @param relPath relative path of the Markdown content file
+ * @param mdContentLine Markdown content
+ * @returns a relative asset file path | empty value
+ */
 export function extractRelAssetFilePath(relPath: string, mdContentLine: string) {
     let relAssetFilePath: string;
 
