@@ -84,13 +84,13 @@ function listMdFilePaths(mdFilePath) {
     return mdFiles;
 }
 /**
- * Write Pre-Processed File based on source and destination paths.
+ * Write Destination File based on source-path, destination-path and pre-processed content.
  * @param srcDir source directory (source location of files that where Pre-Processed)
  * @param destDir destination directory (destination location where Pre-Processed files should be written)
  * @param srcFilePath source file path (the absolute path to the source file that was Pre-Prcoessed)
  * @param preProcessedContent string with content for Pre-Processed File
  */
-function writePreProcessedMdDestFile(srcDir, destDir, srcFilePath, preProcessedContent) {
+function writePreProcessedDestFile(srcDir, destDir, srcFilePath, preProcessedContent) {
     var destPaths = srcFilePath.split(srcDir)[1].split(sep);
     if (destPaths.length > 2) {
         // at least one subdirectory found!
@@ -194,4 +194,4 @@ function isMdInline(mdLine) {
     return mdLine.trim() == mdPreKrokiConfig.mdInlne;
 }
 
-export { createNewDirectory, encodeKrokiDiagram, listMdFilePaths, preProcessKrokiMdContent, preProcessKrokiMdFile, writePreProcessedMdDestFile };
+export { createNewDirectory, encodeKrokiDiagram, listMdFilePaths, preProcessKrokiMdContent, preProcessKrokiMdFile, writePreProcessedDestFile };

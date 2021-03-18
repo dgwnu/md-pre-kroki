@@ -30,6 +30,6 @@ for (const mdInputeFilePath of mdInputeFilePaths) {
     console.log(`Pre-Processing: ${mdInputeFilePath}`);
     const preProcessedMdContent = lib_1.preProcessKrokiMdFile(mdInputeFilePath);
     console.log('-'.repeat(40));
-    lib_1.writePreProcessedMdDestFile(inputDir, outputDir, mdInputeFilePath, preProcessedMdContent);
+    lib_1.writePreProcessedDestFile(inputDir, outputDir, mdInputeFilePath, preProcessedMdContent);
     console.log('='.repeat(40));
 }

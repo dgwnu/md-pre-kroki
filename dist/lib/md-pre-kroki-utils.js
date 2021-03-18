@@ -3,7 +3,7 @@
  * DGWNU Utils to Pre-Process Mark Down with Kroki Diagram Apis
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.preProcessKrokiMdContent = exports.preProcessKrokiMdFile = exports.encodeKrokiDiagram = exports.createNewDirectory = exports.writePreProcessedMdDestFile = exports.listMdFilePaths = void 0;
+exports.preProcessKrokiMdContent = exports.preProcessKrokiMdFile = exports.encodeKrokiDiagram = exports.createNewDirectory = exports.writePreProcessedDestFile = exports.listMdFilePaths = void 0;
 /**
  * Node Package Imports
  */
@@ -38,13 +38,13 @@ function listMdFilePaths(mdFilePath) {
 }
 exports.listMdFilePaths = listMdFilePaths;
 /**
- * Write Pre-Processed File based on source and destination paths.
+ * Write Destination File based on source-path, destination-path and pre-processed content.
  * @param srcDir source directory (source location of files that where Pre-Processed)
  * @param destDir destination directory (destination location where Pre-Processed files should be written)
  * @param srcFilePath source file path (the absolute path to the source file that was Pre-Prcoessed)
  * @param preProcessedContent string with content for Pre-Processed File
  */
-function writePreProcessedMdDestFile(srcDir, destDir, srcFilePath, preProcessedContent) {
+function writePreProcessedDestFile(srcDir, destDir, srcFilePath, preProcessedContent) {
     const destPaths = srcFilePath.split(srcDir)[1].split(path_1.sep);
     if (destPaths.length > 2) {
         // at least one subdirectory found!
@@ -60,7 +60,7 @@ function writePreProcessedMdDestFile(srcDir, destDir, srcFilePath, preProcessedC
     fs_1.writeFileSync(destFilePath, preProcessedContent);
     console.log(`Pre-Processed Destination File: ${destFilePath}`);
 }
-exports.writePreProcessedMdDestFile = writePreProcessedMdDestFile;
+exports.writePreProcessedDestFile = writePreProcessedDestFile;
 /**
  * Create new directory when it not already exists
  * @param newDir new directory to create

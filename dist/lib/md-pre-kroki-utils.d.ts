@@ -7,13 +7,13 @@
  */
 export declare function listMdFilePaths(mdFilePath: string): string[];
 /**
- * Write Pre-Processed File based on source and destination paths.
+ * Write Destination File based on source-path, destination-path and pre-processed content.
  * @param srcDir source directory (source location of files that where Pre-Processed)
  * @param destDir destination directory (destination location where Pre-Processed files should be written)
  * @param srcFilePath source file path (the absolute path to the source file that was Pre-Prcoessed)
  * @param preProcessedContent string with content for Pre-Processed File
  */
-export declare function writePreProcessedMdDestFile(srcDir: string, destDir: string, srcFilePath: string, preProcessedContent: string): void;
+export declare function writePreProcessedDestFile(srcDir: string, destDir: string, srcFilePath: string, preProcessedContent: string): void;
 /**
  * Create new directory when it not already exists
  * @param newDir new directory to create
