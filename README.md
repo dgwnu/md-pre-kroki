@@ -31,7 +31,7 @@ npx mdprekroki <input dir> <output dir>
 
 | Parm | Description |
 |---------|:------------|
-| input dir | Directory with .kroki.md files to pre-process |
+| input dir | Directory with some *kroki.io* coded files to pre-process |
 | output dir | Directory with processes output .md files |
 
 ## Example
